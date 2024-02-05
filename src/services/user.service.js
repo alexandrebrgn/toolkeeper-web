@@ -1,7 +1,8 @@
 import axios from 'axios';
 import authHeader from './auth-header';
+import {AppConfig} from '../config/app_config.js';
 
-const API_URL = 'http://172.21.5.88:8080/api/v1/';
+const API_URL = AppConfig.API_URL;
 
 class UserService {
     getPublicContent() {
@@ -12,16 +13,16 @@ class UserService {
         return axios.get(API_URL + 'user', { headers: authHeader() });
     }
 
-    getAllTool() {
-        return axios.get(API_URL + 'tool', { headers: authHeader() })
-    }
-
     getModeratorBoard() {
         return axios.get(API_URL + 'mod', { headers: authHeader() });
     }
 
     getAdminBoard() {
         return axios.get(API_URL + 'admin', { headers: authHeader() });
+    }
+
+    getOperators() {
+        return axios.get(API_URL + 'operators', { headers: authHeader() });
     }
 }
 

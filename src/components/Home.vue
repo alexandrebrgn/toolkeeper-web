@@ -7,9 +7,10 @@
 </template>
 
 <script>
-import UserService from "../services/user.service";
+import ToolService from "../services/tool.service.js";
 
 export default {
+  // eslint-disable-next-line vue/multi-word-component-names
   name: "Home",
   data() {
     return {
@@ -17,7 +18,7 @@ export default {
     };
   },
   mounted() {
-    UserService.getAllTool().then(
+    ToolService.getAllTool().then(
         (response) => {
           this.content = response.data;
         },

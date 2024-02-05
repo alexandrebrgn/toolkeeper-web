@@ -1,0 +1,65 @@
+<template>
+  <div class="container">
+    <header class="jumbotron">
+      <router-link to="/operationAdd">
+        <button type="button" class="btn btn-primary d-flex justify-content-center">
+          <font-awesome-icon icon="plus"></font-awesome-icon>
+          <p>Nouvelle opération de maintenance</p>
+        </button>
+      </router-link>
+      <ul v-for="operation in operations" :key="operation.id">
+        <li>
+          Date de l'opération : {{operation.toDoDate}}
+          |
+          Rapport d'opération :
+          <span v-if="operation.report">{{operation.report}}</span>
+          <span v-else class="no-report">pas de rapport pour le moment</span>
+          |
+            <font-awesome-icon icon="pencil" />
+           |
+          <router-link :to="{name: 'operation', params: {id: operation.id}}">
+            <font-awesome-icon icon="eye" />
+          </router-link>
+        </li>
+      </ul>
+    </header>
+  </div>
+</template>
+
+<style>
+.no-report {
+  font-style: italic;
+  color: grey;
+}
+
+</style>
+
+<script>
+import OperationService from "../../services/operation.service.js";
+
+export default {
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: "Operation",
+  data() {
+    return {
+      operations: "",
+    };
+  },
+  mounted() {
+    OperationService.getAllOperation().then(
+        (response) => {
+          this.operations = response.data;
+          console.log('Operation.vue - OperationService.getAllOperation().then() : ', this.operations);
+        },
+        (error) => {
+          this.operations =
+              (error.response &&
+                  error.response.data &&
+                  error.response.data.message) ||
+              error.message ||
+              error.toString();
+        }
+    );
+  },
+};
+</script>

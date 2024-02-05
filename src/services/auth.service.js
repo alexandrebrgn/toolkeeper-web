@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const API_URL = 'http://172.21.5.88:8080/api/v1/';
+const API_URL = 'http://172.21.5.11:8080/api/v1/';
 
 class AuthService {
     login(user) {
-        console.log('login')
+        console.log('Authservice - login')
         return axios
             .post(API_URL + 'login', {
                 email: user.email,

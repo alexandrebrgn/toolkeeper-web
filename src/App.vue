@@ -11,6 +11,9 @@
         <li v-if="currentUser" class="nav-item">
           <router-link to="/tool" class="nav-link">Equipements</router-link>
         </li>
+        <li v-if="currentUser" class="nav-item">
+          <router-link to="/operation" class="nav-link">Opérations</router-link>
+        </li>
         <li v-if="showAdminBoard" class="nav-item">
           <router-link to="/admin" class="nav-link">Admin Board</router-link>
         </li>
@@ -29,9 +32,9 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/login" class="nav-link">
+          <a href="/login" class="nav-link">
             <font-awesome-icon icon="sign-in-alt" /> Login
-          </router-link>
+          </a>
         </li>
       </div>
 
