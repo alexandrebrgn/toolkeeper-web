@@ -1,6 +1,14 @@
-# authProject
+# ToolKeeper
 
-This template should help get you started developing with Vue 3 in Vite.
+Application for management of operation of maintenance
+
+## Working 
+
+Tool : B + R + A
+
+Category : B + A
+
+Operation : B + R + A
 
 ## Recommended IDE Setup
 
@@ -19,7 +27,7 @@ npm install
 ### Compile and Hot-Reload for Development
 
 ```sh
-npm run dev
+npm run dev -- --host
 ```
 
 ### Compile and Minify for Production
