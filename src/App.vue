@@ -14,6 +14,9 @@
         <li v-if="currentUser" class="nav-item">
           <router-link to="/operation" class="nav-link">Opérations</router-link>
         </li>
+        <li v-if="currentUser" class="nav-item">
+          <router-link to="/category" class="nav-link">Catégories d'équipement</router-link>
+        </li>
         <li v-if="showAdminBoard" class="nav-item">
           <router-link to="/admin" class="nav-link">Admin Board</router-link>
         </li>

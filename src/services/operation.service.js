@@ -13,7 +13,7 @@ class OperationService {
         return axios.get(API_URL + 'operation' + '/' + id, {headers: authHeader()})
     }
 
-    addOperation(operator_id='1', tool_id='1', toDoDate) {
+    addOperation(operator_id, tool_id, toDoDate) {
         return axios.post(API_URL + 'operation', {
             operator_id: operator_id,
             tool_id: tool_id,

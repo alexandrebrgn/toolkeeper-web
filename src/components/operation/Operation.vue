@@ -1,20 +1,22 @@
 <template>
   <div class="container">
     <header class="jumbotron">
+
       <router-link to="/operationAdd">
-        <button type="button" class="btn btn-primary d-flex justify-content-center">
-          <font-awesome-icon icon="plus"></font-awesome-icon>
-          <p>Nouvelle opération de maintenance</p>
+        <button type="button" class="btn btn-primary">
+          <p class="button-text"><span class="icon-plus">+ </span>Nouvelle opération de maintenance</p>
         </button>
       </router-link>
+
       <ul v-for="operation in operations" :key="operation.id">
         <li>
-          Date de l'opération : {{operation.toDoDate}}
+          {{operation.toDoDate}}
           |
           Rapport d'opération :
           <span v-if="operation.report">{{operation.report}}</span>
           <span v-else class="no-report">pas de rapport pour le moment</span>
           |
+          {{operation.tool.number}}
             <font-awesome-icon icon="pencil" />
            |
           <router-link :to="{name: 'operation', params: {id: operation.id}}">
@@ -22,6 +24,7 @@
           </router-link>
         </li>
       </ul>
+
     </header>
   </div>
 </template>
@@ -30,6 +33,16 @@
 .no-report {
   font-style: italic;
   color: grey;
+}
+
+.button-text {
+  margin: 0;
+}
+
+.icon-plus {
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
 }
 
 </style>

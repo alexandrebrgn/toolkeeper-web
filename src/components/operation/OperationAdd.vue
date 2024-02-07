@@ -68,25 +68,29 @@ export default {
       OperationService.addOperation(this.form.operator_id, this.form.tool_id, this.form.date).then(
           (response) => {
             console.log('OperationAdd.vue - ToolService.getAllTool().then() : ', response);
-            this.$router.push('/home')
+            this.$router.push('/operation')
+          },
+          (error) => {
+            this.tools = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+            this.toolsData();
+          }
+      );
+      console.log('OperationAdd.vue - OperationService.addOperation()')
+    },
+    toolsData() {
+      ToolService.getAllTool().then(
+          (response) => {
+            this.tools = response.data;
+            console.log('OperationAdd.vue - ToolService.getAllTool().then() : ', this.tools);
           },
           (error) => {
             this.tools = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
           }
       );
-      console.log('OperationAdd.vue - OperationService.addOperation()')
-    },
+    }
   },
   mounted() { // Exécutés à l'initialisation
-    ToolService.getAllTool().then(
-        (response) => {
-          this.tools = response.data;
-          console.log('OperationAdd.vue - ToolService.getAllTool().then() : ', this.tools);
-        },
-        (error) => {
-          this.tools = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-        }
-    );
+    this.toolsData();
     UserService.getOperators().then(
         (response) => {
           this.operators = response.data;

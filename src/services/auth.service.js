@@ -1,6 +1,7 @@
 import axios from 'axios';
+import {AppConfig} from '../config/app_config.js';
 
-const API_URL = 'http://172.21.5.11:8080/api/v1/';
+const API_URL = AppConfig.API_URL;
 
 class AuthService {
     login(user) {
