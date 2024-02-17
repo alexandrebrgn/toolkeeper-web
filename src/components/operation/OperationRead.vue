@@ -1,43 +1,35 @@
 <template>
-  <div class="container">
-    <div class="card">
-      <header class="jumbotron">
-        <h1 class="operation-title">Opération de maintenance n°{{operation.id}}</h1>
-        <h3>Effectuée le {{operation.date}}</h3>
-  <!--      <h2 class="tool-title">Equipement n°{{operation.tool.id}}</h2>-->
-        <h2>Rapport d'opération de maintenance</h2>
-        <p>{{operation.report}}</p>
-        <router-link to="/tool">
-        <button>
-          <p>Bonsoir</p>
-        </button>
-        </router-link>
-      </header>
-    </div>
+  <div class="container min-vh-100">
+    <h1 class="operation-title">Opération de maintenance n°{{ operation.id }}</h1>
+    <h3 v-if="operation.date">Effectuée le {{ operation.date }}</h3>
+    <h3 v-else>À éffectuer le : {{ operation.toDoDate }}</h3>
+    <h2>Rapport d'opération de maintenance</h2>
+    <textarea v-if="operation.date">{{operation.report}}</textarea>
+    <router-link :to="{name:'tool', params: {id: operation.tool.id,}}">Voir l'équipement lié</router-link>
   </div>
 </template>
 
 <script>
-import OperationService from "../../services/operation.service.js";
+import OperationService from '../../services/operation.service.js'
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "Tools",
+  name: 'Tools',
   data() {
     return {
-      operation: "",
-    };
+      operation: ''
+    }
   },
-  mounted() {
+  beforeMount() {
     OperationService.readOperation(this.$route.params.id).then(
-        (response) => {
-          this.operation = response.data;
-          console.log('OperationRead.vue - OperationService.readOperation().then() : ', this.operation);
-        },
-        (error) => {
-          this.tool = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-        }
-    );
-  },
-};
+      (response) => {
+        this.operation = response.data
+        console.log('OperationRead.vue - OperationService.readOperation().then() : ', this.operation)
+      },
+      (error) => {
+        this.tool = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+      }
+    )
+  }
+}
 </script>

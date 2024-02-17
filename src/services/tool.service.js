@@ -6,6 +6,7 @@ const API_URL = AppConfig.API_URL;
 
 class ToolService {
     getAllTool() {
+        console.log('ToolService - getAll() : ', API_URL + 'tool')
         return axios.get(API_URL + 'tool', { headers: authHeader() })
     }
 
@@ -14,15 +15,21 @@ class ToolService {
         return axios.get(API_URL + 'tool' + '/' + id, { headers: authHeader() })
     }
 
-    addTool(number, serialId, localisation, dateNextOperation, category) {
-        console.log(number, serialId, localisation, dateNextOperation, category)
+    addTool(name, serialId, localisation, dateNextOperation, category) {
+        console.log('ToolService - add() : on ', API_URL + 'tool')
+        // console.log('name:', name, 'serialId:', serialId, 'localisation:', localisation, 'dateNextOperation:', dateNextOperation, 'category_id:', category)
         return axios.post(API_URL + 'tool', {
-            number: number,
+            name: name,
             serialId: serialId,
             localisation: localisation,
             dateNextOperation: dateNextOperation,
-            category: category,
+            category_id: category,
         }, { headers: authHeader() })
+    }
+
+    editTool(form, id) {
+        console.log('ToolService - edit() : on ', API_URL + 'tool' + '/' + id)
+        return axios.put(API_URL + 'tool' + '/' + id, form, { headers: authHeader() })
     }
 }
 

@@ -15,7 +15,7 @@
       <select v-model="form.tool_id">
         <option disabled value="" class="disabled-option">Sélectionnez un équipement</option>
         <option v-for="tool in tools" :key="tool.id" :value="tool.id">
-          {{ tool.number }}
+          {{ tool.name }}
         </option>
       </select>
 

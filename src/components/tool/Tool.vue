@@ -1,75 +1,115 @@
 <template>
-  <div class="container">
-    <header class="jumbotron">
+  <div class="container vh-100 mt-3 mb-3">
+    <div class="container pt-5">
+      <div class="d-flex justify-content-between">
+        <h2 class="mb-5">Équipements disponibles</h2>
+        <router-link to="/toolAdd" class="right">
+          <button type="button" class="btn btn-primary">
+            <p class="button-text"><span class="icon-plus"> + </span>Nouvel équipement</p>
+          </button>
+        </router-link>
+      </div>
 
-      <router-link to="/toolAdd">
-        <button type="button" class="btn btn-primary">
-          <p class="button-text"><span class="icon-plus">+ </span>Nouvel équipement</p>
-        </button>
-      </router-link>
+      <div class="container d-flex align-items-center">
+        <select v-model="search" class="">
+          <option disabled value="" class="disabled-option">Filtrer par catégorie</option>
+          <option value="null">Tous les équipements</option>
+          <option v-for="category in categories" :key="category.id" :value="category.id">
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
 
-<!--      <ul v-for="tool in tools" :key="tool.id">-->
-<!--        <li>-->
-<!--          Équipement n°{{tool.number}}-->
-<!--          |-->
-<!--          Id de série : {{tool.serialId}}-->
-<!--          |-->
-<!--          <font-awesome-icon v-if="tool.category.name === 'Extincteurs'" icon="fire-extinguisher"></font-awesome-icon>-->
-<!--          <font-awesome-icon v-if="tool.category.name === 'Climatiseurs'" icon="air-freshener"></font-awesome-icon>-->
-<!--          <font-awesome-icon v-if="tool.category.name === 'Véhicules'" icon="car"></font-awesome-icon>-->
-<!--          {{tool.category.name}}-->
-
-<!--          |-->
-<!--          <font-awesome-icon icon="eye" /> |-->
-<!--          <font-awesome-icon icon="user-plus" />-->
-<!--        </li>-->
-<!--      </ul>-->
-
-      <table class="table">
-        <thead>
-          <tr class="d-flex">
-            <th class="col-1">#</th>
-            <th class="col-4">Nom</th>
-            <th class="col-4">Numéro de série</th>
-            <th class="col-2">Catégorie</th>
-            <th class="col-1">Voir</th>
+      <div class="table-responsive">
+        <table class="table custom-table border-success">
+          <thead>
+          <tr >
+            <th class="col-md-1 border-top-0 border-bottom" scope="col">#</th>
+            <th class="col-md-3 border-top-0 border-bottom" scope="col"><font-awesome-icon icon="check"></font-awesome-icon> Nom</th>
+            <th class="col-md-4 border-top-0 border-bottom" scope="col"><font-awesome-icon icon="map-marker"></font-awesome-icon> Localisation</th>
+            <th class="col-md-4 border-top-0 border-bottom" scope="col"><font-awesome-icon icon="calendar"></font-awesome-icon> Date de la prochaine opération</th>
+            <th class="col-md-1 border-top-0 border-bottom" scope="col">...</th>
           </tr>
-        </thead>
-        <tbody v-for="tool in tools" :key="tool.id">
-          <tr class="d-flex">
-            <th scope="row" class="col-1">{{tool.id}}</th>
-            <td class="col-4">{{tool.number}}</td>
-            <td class="col-4">{{tool.serialId}}</td>
-            <td class="col-2">{{tool.category.name}}</td>
-            <td class="col-1"><router-link :to="{name:'tool', params: {id: tool.id,}}"><font-awesome-icon icon="eye" /></router-link></td>
-          </tr>
-        </tbody>
-      </table>
-    </header>
+          </thead>
+
+          <tbody>
+            <tr  v-for="tool in filteredItems" :key="tool.id" class="text-muted">
+              <td class="border-top-0 border-bottom">
+                {{tool.id}}
+              </td>
+              <td class="border-top-0 border-bottom">
+                {{tool.name}}
+              </td>
+              <td class="border-top-0 border-bottom">
+                {{ tool.localisation}}
+              </td>
+              <td class="border-top-0 border-bottom">
+                {{ CustomFunctions.convertDate(tool.dateNextOperation, '\\', 'fr')}}
+              </td>
+              <td class="border-top-0 border-bottom">
+                <router-link :to="{name:'tool', params: {id: tool.id,}}"><font-awesome-icon icon="eye"/></router-link>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </template>
 
+<script setup>
+import CustomFunctions from "@/assets/functions/convertDate.js"
+</script>
+
 <script>
 import ToolService from "../../services/tool.service.js";
+import CategoryService from '@/services/category.service.js';
+import { Form, Field, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Tools",
+
   data() {
     return {
+      areToolsLoaded: false,
       tools: "",
+      categories: "",
+      search: ""
     };
   },
   mounted() {
     ToolService.getAllTool().then(
-        (response) => {
-          this.tools = response.data;
-          console.log('Tool.vue - ToolService.getAllTool().then() : ', this.tools);
-        },
-        (error) => {
-          this.tools = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-        }
+      (response) => {
+        this.areToolsLoaded = true;
+        this.tools = response.data;
+      },
+      (error) => {
+        this.tools = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      }
+    );
+    CategoryService.getAllCategory().then(
+      (response) => {
+        this.categories = response.data;
+      },
+      (error) => {
+        this.categories = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      }
     );
   },
-};
+  computed: {
+    filteredItems() {
+      if (!this.areToolsLoaded) {
+        return this.tools
+      } else if (this.search === 'null') {
+        return this.tools
+      } else {
+        return this.tools.filter(tool => {
+          return tool.category.id.toString().toLowerCase().indexOf(this.search.toString().toLowerCase()) > -1
+        })
+      }
+    }
+  }
+}
 </script>

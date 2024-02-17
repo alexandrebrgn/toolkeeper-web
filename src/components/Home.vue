@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
-    <header class="jumbotron">
+  <div class="container min-vh-100">
+    <div class="container">
       <h3>Accueil</h3>
-    </header>
+    </div>
   </div>
 </template>
 

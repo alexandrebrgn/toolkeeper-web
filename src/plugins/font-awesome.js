@@ -12,8 +12,15 @@ import { // Import les icônes voulues
   faFireExtinguisher,
   faAirFreshener,
   faCar,
+  faSheetPlastic,
+  faCheck,
+  faMapMarker,
+  faCalendar,
+  faFilter,
+  faArrowLeft,
+  faArrowRight
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faAirFreshener, faCar, faPlus, faFireExtinguisher, faPencil, faEye, faHome, faUser, faUserPlus, faSignInAlt, faSignOutAlt);
+library.add(faCalendar, faArrowRight, faArrowLeft, faFilter, faCheck, faAirFreshener, faCar, faPlus, faFireExtinguisher, faPencil, faEye, faHome, faUser, faUserPlus, faSignInAlt, faSignOutAlt, faSheetPlastic, faMapMarker);
 
 export { FontAwesomeIcon };
