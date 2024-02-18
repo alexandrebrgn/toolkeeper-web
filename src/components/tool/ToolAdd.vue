@@ -1,5 +1,5 @@
 <template>
-  <div class="container vh-100 d-flex align-items-center justify-content-center">
+  <div class="container min-vh-100 d-flex align-items-center justify-content-center">
     <div class="container w-auto shadow-lg p-5 rounded">
       <Form @submit="handleToolPost" :validation-schema="schema">
         <h2>Créer un nouvel équipement</h2>

@@ -79,9 +79,10 @@
 
 @media (min-width: 1340px) {
   .main-container {
-    min-width: 1340px;
+    min-width: 1340px;  
   }
 }
+
 .varela-round-regular {
   font-family: "Varela Round", sans-serif;
   font-weight: 100;

@@ -1,5 +1,5 @@
 <template>
-  <div class="container vh-100 mt-3 mb-3">
+  <div class="container min-vh-100 w-100">
     <div class="container pt-5">
       <div class="d-flex justify-content-between">
         <h2 class="mb-5">Équipements disponibles</h2>

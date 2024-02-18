@@ -94,7 +94,7 @@
                   <td class="border-top-0 border-bottom position-relative" v-if="operation.report.length >= 40">
                     <div class="text-nowrap overflow-hidden position-absolute">{{ operation.report.substring(0, 40) }}...</div>
                   </td>
-                  <td class="border-top-0 text-right text-right">
+                  <td class="border-top-0 border-bottom text-right">
                     {{ operation.user.firstName}} {{operation.user.lastName}}
                   </td>
                 <td class="border-top-0 border-bottom text-center">
@@ -112,8 +112,9 @@
 <style>
 
 * {
-  //box-shadow: 0 0 0 1px red inset;
+  /* box-shadow: 0 0 0 1px red inset; */
 }
+
 .no-report {
   font-style: italic;
   color: grey;

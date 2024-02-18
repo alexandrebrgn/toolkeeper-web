@@ -5,7 +5,7 @@
     <div class="divs-container">
 
       <div class="left-container shadow">
-        <img height="250px" src="https://picsum.photos/1920/1080">
+        <img class="image-container" src="https://picsum.photos/1920/1080" alt="equipement">
         <p>{{tool.category.name}} : {{tool.name}}</p>
       </div>
       <div class="right-container">
@@ -79,7 +79,7 @@
 <style>
 
 * {
-  //box-shadow: inset 0 0 0 1px red;
+  /* box-shadow: inset 0 0 0 1px red; */
   p {
     margin: 0;
     padding: 0;
@@ -106,6 +106,10 @@
   align-items: center;
   flex-direction: column;
   gap: 10%;
+}
+
+.image-container {
+  height: 15vw;
 }
 
 .right-container {
@@ -152,7 +156,7 @@
 }
 
 .operation-container > * {
-  //box-shadow: 0 0 0 1px black inset;
+ /*  box-shadow: 0 0 0 1px black inset; */
   color: grey;
 }
 
