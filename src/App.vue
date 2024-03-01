@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="varela-round-regular">
+  <div id="app" class="varela-round-regular min-vh-100">
     <nav class="navbar navbar-expand navbar-dark bg-dark">
       <a href="/" class="navbar-brand">ToolKeeper</a>
       <div class="navbar-nav mr-auto">
@@ -16,15 +16,6 @@
           </li>
           <li v-if="currentUser" class="nav-item">
             <router-link to="/category" class="nav-link">Catégories d'équipement</router-link>
-          </li>
-          <li v-if="showAdminBoard" class="nav-item">
-            <router-link to="/admin" class="nav-link">Admin Board</router-link>
-          </li>
-          <li v-if="showModeratorBoard" class="nav-item">
-            <router-link to="/mod" class="nav-link">Moderator Board</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link v-if="currentUser" to="/user" class="nav-link">User</router-link>
           </li>
       </div>
 
@@ -59,19 +50,19 @@
     <div class="container main-container shadow mt-5">
       <router-view />
     </div>
+
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <p class="col-md-4 mb-0 text-muted">© 2024 ToolKeeper Inc</p>
+  
+      <ul class="nav col-md-4 justify-content-end">
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+      </ul>
+    </footer>
   </div>
-
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <p class="col-md-4 mb-0 text-muted">© 2024 ToolKeeper Inc</p>
-
-    <ul class="nav col-md-4 justify-content-end">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-    </ul>
-  </footer>
 </template>
 
 <style>

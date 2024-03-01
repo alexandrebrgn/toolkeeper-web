@@ -2,7 +2,7 @@
   <div class="container min-vh-100">
     <div class="container pt-5">
       <div class="home-title-container d-flex justify-content-center align-items-center text-white ">
-        <h2 class="mb-5">Bienvenue {{ currentUser.firstName }} {{ currentUser.lastName }}</h2>
+        <h2>Bienvenue {{ currentUser.firstName }} {{ currentUser.lastName }}</h2>
       </div>
       <div class="d-flex justify-content-between">
         <div class="main-grid pb-5">
@@ -55,8 +55,7 @@
 <style>
 
 * {
-  /* box-shadow: inset 0 0 0 1px red; */
-
+  /* box-shadow: inset 0 0 0 1px red; */ 
 }
 
 .home-title-container {

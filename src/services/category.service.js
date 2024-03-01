@@ -28,6 +28,12 @@ class CategoryService {
             name:name
         }, { headers: authHeader() })
     }
+
+    editCategory(form, id) {
+        console.log('CategoryService - edit() : on ', API_URL + 'category' + '/' + id)
+        console.log('Formulaire : ', form)
+        return axios.put(API_URL + 'category' + '/' + id, form, { headers: authHeader() })
+    }
 }
 
 export default new CategoryService();

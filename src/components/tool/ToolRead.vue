@@ -39,9 +39,10 @@
             <p> Catégorie : {{ tool.category.name }}</p>
           </div>
 
-
-          <button class="tool-info-button" v-if="edit===false" @click="edit=true;">Modifier</button>
-          <button class="tool-info-button" v-if="edit===true" @click="edit=false; editTool()">Valider</button>
+          <div class="button-div">
+            <button class="tool-info-button modify-button" v-if="edit===false" @click="edit=true;"> <font-awesome-icon icon="pencil"></font-awesome-icon> Modifier</button>
+            <button class="tool-info-button validate-button" v-if="edit===true" @click="edit=false; editTool()"><font-awesome-icon icon="check"></font-awesome-icon> Valider</button>
+          </div>
 
         </div>
 
@@ -75,100 +76,6 @@
     </div>
   </div>
 </template>
-
-<style>
-
-* {
-  /* box-shadow: inset 0 0 0 1px red; */
-  p {
-    margin: 0;
-    padding: 0;
-  }
-}
-
-.main-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2vw;
-}
-
-.divs-container {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-}
-
-.left-container {
-  width: 40%;
-  height: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 10%;
-}
-
-.image-container {
-  height: 15vw;
-}
-
-.right-container {
-  width: 50%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 2vw;
-  margin-bottom: 30px;
-}
-
-.tool-info {
-  margin: 10px 0 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1vw;
-  padding: 0;
-
-  input {
-    width: auto;
-    border: none;
-    font-style: italic;
-    background: transparent;
-  }
-}
-
-.tool-info-element > *{
-  margin : 0;
-  padding: 0;
-}
-
-.tool-info-button {
-  margin: 0 auto 0;
-}
-
-.container-title {
-  font-weight: bold;
-}
-
-.operation-container {
-  display: grid;
-  grid-template-columns: 40% 55% 5%;
-  border-bottom: 1px solid #c5c5c5;
-}
-
-.operation-container > * {
- /*  box-shadow: 0 0 0 1px black inset; */
-  color: grey;
-}
-
-.bottom-right-container {
-  padding: 30px;
-}
-
-.top-right-container {
-  padding: 30px;
-}
-</style>
-
 
 <script setup>
 import CustomFunctions from "@/assets/functions/convertDate.js"
@@ -210,3 +117,116 @@ export default {
 };
 //https://boutique.orange.fr/mobile/details/samsung-galaxy-s24-ultra-noir-256go?intention=acquisition
 </script>
+
+<style>
+
+* {
+  /*box-shadow: inset 0 0 0 1px red;*/
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+}
+
+.divs-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.left-container {
+  width: 40%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10%;
+  border-radius: 10px;
+}
+
+.image-container {
+  height: 15vw;
+  border-radius: 5px;
+}
+
+.right-container {
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+  margin-bottom: 30px;
+}
+
+.tool-info {
+  margin: 10px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
+  padding: 0;
+
+  input {
+    width: auto;
+    border: none;
+    font-style: italic;
+    background: transparent;
+  }
+}
+
+.tool-info-element > *{
+  margin : 0;
+  padding: 0;
+}
+
+.button-div {
+  width: 100%;
+  text-align: center;
+}
+
+.tool-info-button {
+  margin: 0 auto 0;
+  padding: 3px 16px;
+  text-align: center;
+  transition: all 80ms ease-in-out;
+  border-radius: 5px;
+  border: 1px rgb(100, 100, 100) solid;
+  background-color:rgb(173, 173, 173);
+  color: rgb(54, 54, 54);
+}
+
+.validate-button {
+  background-color: rgb(62, 107, 62);
+}
+
+.container-title {
+  font-weight: bold;
+}
+
+.operation-container {
+  display: grid;
+  grid-template-columns: 40% 55% 5%;
+  border-bottom: 1px solid #c5c5c5;
+}
+
+.operation-container > * {
+ /*  box-shadow: 0 0 0 1px black inset; */
+  color: grey;
+}
+
+.bottom-right-container {
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.top-right-container {
+  padding: 30px;
+  border-radius: 10px;
+}
+</style>
