@@ -30,6 +30,12 @@ npm install
 npm run dev -- --host
 ```
 
+If doesn't work try :
+
+```sh
+nvm use 16
+```
+
 ### Compile and Minify for Production
 
 ```sh
@@ -41,3 +47,8 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### Configure connexion with API
+
+-> src/config/app_config.js, set ip adress of API
+
